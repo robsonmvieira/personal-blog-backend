@@ -1,0 +1,22 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "this is back-end part of my blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "nodeJs",
+    "typescript",
+    "tdd",
+    "javascript",
+    "design-patterns"
+  ],
+  "author": "robsonmaia",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.11.1",
+    "typescript": "^3.8.3"
+  }
+}
