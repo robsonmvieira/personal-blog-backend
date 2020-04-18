@@ -19,6 +19,8 @@
   "dependencies": {
     "@types/node": "^13.11.1",
     "express": "^4.17.1",
+    "pg": "^8.0.2",
+    "typeorm": "^0.2.24",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
