@@ -1,5 +1,6 @@
 import express from 'express'
 import postController from './controllers/postController'
+import 'reflect-metadata'
 import './database'
 const app = express()
 
