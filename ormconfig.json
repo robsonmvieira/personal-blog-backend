@@ -5,6 +5,7 @@
   "username": "postgres",
   "password": "dev",
   "database": "blogdatabase",
+  "entities": ["./src/models/*.ts"],
   "migrations": [
     "./src/database/migrations/*.ts"
   ],
