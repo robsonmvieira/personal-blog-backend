@@ -18,7 +18,9 @@
   "author": "robsonmaia",
   "license": "ISC",
   "dependencies": {
+    "@types/cors": "^2.8.6",
     "@types/node": "^13.13.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "pg": "^8.0.2",
     "reflect-metadata": "^0.1.13",
