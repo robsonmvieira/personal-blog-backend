@@ -21,6 +21,7 @@ export default class CreatePosts1587302007750 implements MigrationInterface {
           {
             name: 'draw',
             type: 'boolean',
+            isNullable: true,
             default: true
           },
           {
