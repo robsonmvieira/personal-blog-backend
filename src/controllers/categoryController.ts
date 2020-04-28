@@ -11,16 +11,24 @@ routes.post('/', async (req, res) => {
 })
 
 routes.get('/', async (req, res) => {
-  const categoryRepository = getCustomRepository(CategoryRepository)
-  const categories = await categoryRepository.find()
-  return res.status(200).json(categories)
+  try {
+    const categoryRepository = getCustomRepository(CategoryRepository)
+    const categories = await categoryRepository.find()
+    return res.status(200).json(categories)
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 routes.get('/:id', async (req, res) => {
-  const { id } = req.params
-  const categoryRepository = getCustomRepository(CategoryRepository)
-  const category = await categoryRepository.findOne({ id })
-  res.status(200).json(category)
+  try {
+    const { id } = req.params
+    const categoryRepository = getCustomRepository(CategoryRepository)
+    const category = await categoryRepository.findOne({ id })
+    res.status(200).json(category)
+  } catch (error) {
+    console.log(error)
+  }
 })
 routes.put('/:id', async (req, res) => {
   const { id } = req.params
