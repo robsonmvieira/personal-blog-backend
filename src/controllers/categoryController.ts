@@ -1,13 +1,17 @@
 import { Router } from 'express'
+import { getCustomRepository } from 'typeorm'
 
+import { CategoryRepository } from '../repository/categoryRepository'
+const categoryRepository = getCustomRepository(CategoryRepository)
 const routes = Router()
 
 routes.post('/', (req, res) => {
   res.status(200).json({ ...req.body })
 })
 
-routes.get('/', (req, res) => {
-  res.status(200).json({ msg: 'ok' })
+routes.get('/', async (req, res) => {
+  const categories = await categoryRepository.find()
+  res.status(200).json(categories)
 })
 
 routes.get('/:id', (req, res) => {
