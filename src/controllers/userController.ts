@@ -1,27 +1,47 @@
+import { getCustomRepository } from 'typeorm'
 import { Router } from 'express'
-
+import UserRepository from '../repository/userRepository'
 const routes = Router()
 
-routes.post('/', (req, res) => {
-  res.status(200).json({ ...req.body })
+routes.post('/', async (req, res) => {
+  try {
+    const userRepository = getCustomRepository(UserRepository)
+    const user = await userRepository.save(req.body)
+    res.status(200).json(user)
+  } catch (error) {
+    console.log(error)
+  }
 })
 
-routes.get('/', (req, res) => {
-  res.status(200).json({ msg: 'ok' })
+routes.get('/', async (req, res) => {
+  const userRepository = getCustomRepository(UserRepository)
+  const users = await userRepository.find()
+  res.status(200).json(users)
 })
 
-routes.get('/:id', (req, res) => {
+routes.get('/:id', async (req, res) => {
+  const userRepository = getCustomRepository(UserRepository)
   const { id } = req.params
-  res.status(200).json({ msg: id })
+  const query = await userRepository.findOne({ id })
+  res.status(200).json(query)
 })
-routes.put('/:id', (req, res) => {
-  const { title } = req.body
+routes.put('/:id', async (req, res) => {
+  const userRepository = getCustomRepository(UserRepository)
   const { id } = req.params
-  res.status(200).json({ msg: id, body: title })
+  const user = await userRepository.update(id, req.body)
+  res.status(200).json(user)
 })
 
-routes.delete('/:id', (req, res) => {
+routes.delete('/:id', async (req, res) => {
   const { id } = req.params
-  res.status(200).json({ msg: id, body: 'ok' })
-})
+  const userRepository = getCustomRepository(UserRepository)
+  const user = await userRepository.findOne({ id })
+
+  if (user != null) {
+    await userRepository.remove(user)
+    return res.status(200).json({ message: true })
+  }
+  return res.status(400).json({ error: 'user was not found' })
+}
+)
 export default routes
