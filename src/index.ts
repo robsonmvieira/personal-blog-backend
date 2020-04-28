@@ -1,11 +1,13 @@
+import 'reflect-metadata'
 import express from 'express'
 import cors from 'cors'
 import postController from './controllers/postController'
 import tagController from './controllers/tagController'
 import categoryController from './controllers/categoryController'
 import userController from './controllers/userController'
-import 'reflect-metadata'
+
 import './database'
+
 const app = express()
 
 app.use(express.json())

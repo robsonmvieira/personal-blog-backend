@@ -2,30 +2,43 @@ import { Router } from 'express'
 import { getCustomRepository } from 'typeorm'
 
 import { CategoryRepository } from '../repository/categoryRepository'
-const categoryRepository = getCustomRepository(CategoryRepository)
 const routes = Router()
 
-routes.post('/', (req, res) => {
-  res.status(200).json({ ...req.body })
+routes.post('/', async (req, res) => {
+  const categoryRepository = getCustomRepository(CategoryRepository)
+  const result = await categoryRepository.save(req.body)
+  res.status(200).json(result)
 })
 
 routes.get('/', async (req, res) => {
+  const categoryRepository = getCustomRepository(CategoryRepository)
   const categories = await categoryRepository.find()
-  res.status(200).json(categories)
+  return res.status(200).json(categories)
 })
 
-routes.get('/:id', (req, res) => {
+routes.get('/:id', async (req, res) => {
   const { id } = req.params
-  res.status(200).json({ msg: id })
+  const categoryRepository = getCustomRepository(CategoryRepository)
+  const category = await categoryRepository.findOne({ id })
+  res.status(200).json(category)
 })
-routes.put('/:id', (req, res) => {
-  const { title } = req.body
+routes.put('/:id', async (req, res) => {
   const { id } = req.params
-  res.status(200).json({ msg: id, body: title })
+  const categoryRepository = getCustomRepository(CategoryRepository)
+  const result = await categoryRepository.update(id, req.body)
+  res.status(200).json(result)
 })
 
-routes.delete('/:id', (req, res) => {
+routes.delete('/:id', async (req, res) => {
   const { id } = req.params
-  res.status(200).json({ msg: id, body: 'ok' })
-})
+  const categoryRepository = getCustomRepository(CategoryRepository)
+  const category = await categoryRepository.findOne({ id })
+
+  if (category != null) {
+    const result = await categoryRepository.remove(category)
+    return res.status(200).json(result)
+  }
+  return res.status(400).json({ error: 'category was not found' })
+}
+)
 export default routes
