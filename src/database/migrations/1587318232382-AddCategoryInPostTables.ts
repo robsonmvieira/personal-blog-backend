@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from 'typeorm'
 
 export default class AddCategoryInPostTables1587318232382 implements MigrationInterface {
-  public async up (queryRunner: QueryRunner): Promise<any> {
+  public async up (queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn('posts',
       new TableColumn({
         name: 'category_id',
@@ -17,7 +17,7 @@ export default class AddCategoryInPostTables1587318232382 implements MigrationIn
       }))
   }
 
-  public async down (queryRunner: QueryRunner): Promise<any> {
+  public async down (queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('posts', 'categoryPost')
     await queryRunner.dropColumn('posts', 'category_id')
   }
