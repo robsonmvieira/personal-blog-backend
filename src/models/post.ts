@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne } from 'typeorm'
+import { Category } from './category'
 
 @Entity('posts')
 export class Post {
@@ -16,6 +17,9 @@ export class Post {
 
   @Column()
   content: string
+
+  @ManyToOne(type => Category, category => category.posts)
+  category: Category
 
   @CreateDateColumn()
   cretated_at: Date
