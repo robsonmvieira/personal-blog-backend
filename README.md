@@ -1,6 +1,6 @@
 # Personal Blog Back-end
 
- This is a serve side for my blog builded in NodeJs that is hosting in:
+ This is a serve side for my blog builded in NodeJs
 
 ## Stack
 
