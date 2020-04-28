@@ -1,8 +1,13 @@
-import { Post } from './post'
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToMany } from 'typeorm'
+import Post from './post'
+import {
+  Entity, PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn, OneToMany
+} from 'typeorm'
 
-@Entity('categories')
-export class Category {
+@Entity()
+export default class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
