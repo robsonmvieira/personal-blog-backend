@@ -12,8 +12,8 @@ export default class Post {
   @Column()
   title: string;
 
-  @Column('boolean')
-  draw: boolean
+  @Column({ nullable: true, default: false })
+  draw?: boolean
 
   @Column()
   subtitle: string;
