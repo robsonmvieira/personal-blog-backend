@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinTable } from 'typeorm'
 import Post from './post'
 
 @Entity('users')
@@ -19,5 +19,6 @@ export default class User {
   isAdmin: string
 
   @OneToMany(type => Post, post => post.user)
+  @JoinTable()
   posts: Post[]
 }
