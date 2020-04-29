@@ -3,7 +3,7 @@ import {
   Entity, PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn, OneToMany
+  UpdateDateColumn, OneToMany, JoinTable
 } from 'typeorm'
 
 @Entity('categories')
@@ -15,6 +15,7 @@ export default class Category {
   title: string
 
   @OneToMany(type => Post, post => post.category)
+  @JoinTable()
   posts: Post[]
 
   @CreateDateColumn()
