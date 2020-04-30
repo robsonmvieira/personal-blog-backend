@@ -9,9 +9,9 @@ I'm using following techs:
 - NodeJs
 - Typescript
 - Typeorm
-- express
-- postgresSql
-- docker
+- Express
+- PostgresSql
+- Docker
 
 ## How to use
   you'll need of postgres database instance
