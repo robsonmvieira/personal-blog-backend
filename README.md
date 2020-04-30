@@ -8,7 +8,7 @@ I'm using following techs:
 
 - NodeJs
 - Typescript
--Typeorm
+- Typeorm
 - express
 - postgresSql
 - docker
