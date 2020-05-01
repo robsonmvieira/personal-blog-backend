@@ -8,22 +8,23 @@ I'm using following techs:
 
 - NodeJs
 - Typescript
-- express
-- postgresSql
-- docker
+- Typeorm
+- Express
+- PostgresSql
+- Docker
 
 ## How to use
-  you'll need of postgres database instance
+  You'll need of postgres database instance
 
- clone the project :
+ Clone the project :
  ```
   github clone https://github.com/robsonmvieira/personal-blog-backend
  ```
- go to folder to project :
+ Go to folder to project :
  ```
   cd personal-blog-backend
  ```
- install dependencies :
+ Install dependencies :
  ```
   yarn install
  ```
