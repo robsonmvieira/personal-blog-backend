@@ -1,12 +1,23 @@
 import { getCustomRepository } from 'typeorm'
 import { Router } from 'express'
 import UserRepository from '../repository/userRepository'
+import EncryptService from '../infra/services/encryptService'
+
 const routes = Router()
 
 routes.post('/', async (req, res) => {
+  const bcrypt = new EncryptService()
+
   try {
     const userRepository = getCustomRepository(UserRepository)
-    const user = await userRepository.save(req.body)
+    let { email, password, name, isAdmin } = req.body
+    password = await bcrypt.exec(password)
+    if (isAdmin === undefined) {
+      isAdmin = false
+    }
+    const data = { email, password, name, isAdmin }
+    const user = await userRepository.save(data)
+    delete user.password
     res.status(200).json(user)
   } catch (error) {
     console.log(error)
