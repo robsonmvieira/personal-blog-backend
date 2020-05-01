@@ -16,6 +16,8 @@ I'm using following techs:
 ## How to use
   You'll need of postgres database instance
 
+  you'll need create a environments.ts file in environments folder. You can based from environments example to fill your environment variables.
+
  Clone the project :
  ```
   github clone https://github.com/robsonmvieira/personal-blog-backend
