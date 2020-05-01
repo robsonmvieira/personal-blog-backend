@@ -6,6 +6,7 @@ import tagController from './controllers/tagController'
 import categoryController from './controllers/categoryController'
 import userController from './controllers/userController'
 import commentController from './controllers/commentController'
+import sessionController from './controllers/sessionController'
 import './database'
 
 const app = express()
@@ -18,5 +19,6 @@ app.use('/tags', tagController)
 app.use('/categories', categoryController)
 app.use('/users', userController)
 app.use('/comments', commentController)
+app.use('/sessions', sessionController)
 
 app.listen(8000, () => console.log('app server running : http://localhost:8000'))
