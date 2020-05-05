@@ -7,7 +7,7 @@ import categoryController from './controllers/categoryController'
 import userController from './controllers/userController'
 import commentController from './controllers/commentController'
 import sessionController from './controllers/sessionController'
-import './database'
+import '@infra/database'
 
 const app = express()
 
