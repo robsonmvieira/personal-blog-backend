@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm'
 import { Router } from 'express'
-import CommentRepository from '../repository/commentRepository'
+import CommentRepository from '@infra/repository/commentRepository'
 
 const routes = Router()
 

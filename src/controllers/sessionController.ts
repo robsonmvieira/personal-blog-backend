@@ -1,9 +1,9 @@
 import { Router } from 'express'
 import { getRepository } from 'typeorm'
-import User from '../models/user'
+import User from '@models/user'
 import { sign } from 'jsonwebtoken'
 import ComparePasswordService from '../infra/services/comparePasswordService'
-import { environmnets } from '../environments/environments'
+import { environmnets } from '@infra/environments/environments'
 
 const routes = Router()
 const compareService = new ComparePasswordService()

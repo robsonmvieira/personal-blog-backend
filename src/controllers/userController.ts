@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm'
 import { Router } from 'express'
-import UserRepository from '../repository/userRepository'
+import UserRepository from '@infra/repository/userRepository'
 import EncryptService from '../infra/services/encryptService'
 
 const routes = Router()

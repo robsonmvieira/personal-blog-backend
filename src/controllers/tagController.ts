@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm'
 import { Router } from 'express'
-import TagRepository from '../repository/tagRepository'
+import TagRepository from '@infra/repository/tagRepository'
 
 const routes = Router()
 

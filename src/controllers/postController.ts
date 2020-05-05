@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 import { getCustomRepository } from 'typeorm'
-import PostRepository from '../repository/postRepository'
+import PostRepository from '@infra/repository/postRepository'
 const routes = Router()
 
 routes.post('/', async (req, res) => {
