@@ -1,4 +1,4 @@
 node_modules
 dist
 .vscode
-src/environments/environments.ts
+src/infra/environments/environments.ts
