@@ -1,64 +1,50 @@
+import SaveCategoryService from '@infra/services/SaveCategoryService'
 import { Request, Response } from 'express'
-import { injectable, inject } from 'tsyringe'
-import ICategoryRepository from '@domain/contracts/ICategoryRepository'
+import { container } from 'tsyringe'
+import FindAllCategoryService from '@infra/services/FindAllCategoryService'
+import ShowCategoryService from '@infra/services/ShowCategoryService'
+import UpdateCategoryService from '@infra/services/UpdateCategoryService'
+import RemoveCategoryService from '@infra/services/RemoveCategoryService'
 // const routes = Router()
 
-@injectable()
 export default class CategoryController {
-  constructor (
-    @inject('CategoryRepository') private readonly categoryRepository: ICategoryRepository
-  ) {}
-
   public async index (request: Request, response: Response): Promise<Response> {
-    const res = await this.categoryRepository.index()
+    const categoryService = container.resolve(FindAllCategoryService)
+    const result = await categoryService.exec()
+    return response.status(200).json(result)
+  }
 
-    return response.status(200).json(res)
+  public async save (request: Request, response: Response): Promise<Response> {
+    const categoryService = container.resolve(SaveCategoryService)
+    const result = await categoryService.exec(request.body)
+    return response.status(200).json(result)
+  }
+
+  public async show (request: Request, response: Response): Promise<Response> {
+    const categoryService = container.resolve(ShowCategoryService)
+    const result = await categoryService.exec(request.params.id)
+    if (result !== undefined) {
+      return response.status(200).json(result)
+    }
+    return response.status(400).json({ error: 'category was not found' })
+  }
+
+  public async update (request: Request, response: Response): Promise<Response> {
+    const categoryService = container.resolve(UpdateCategoryService)
+    const result = await categoryService.exec(request.params.id, request.body)
+
+    if (result !== undefined) {
+      return response.status(200).json(result)
+    }
+    return response.status(401).json({ error: 'bad request' })
+  }
+
+  public async remove (request: Request, response: Response): Promise<Response> {
+    const categoryService = container.resolve(RemoveCategoryService)
+    const result = await categoryService.exec(request.params.id)
+    if (result !== undefined) {
+      return response.status(200).json(true)
+    }
+    return response.status(400).json(false)
   }
 }
-
-// routes.post('/', async (req, res) => {
-//   const categoryRepository = getCustomRepository(CategoryRepository)
-//   const result = await categoryRepository.save(req.body)
-//   res.status(200).json(result)
-// })
-
-// routes.get('/', async (req, res) => {
-//   try {
-//     const categoryRepository = getCustomRepository(CategoryRepository)
-//     const categories = await categoryRepository.find()
-//     return res.status(200).json(categories)
-//   } catch (error) {
-//     console.log(error)
-//   }
-// })
-
-// routes.get('/:id', async (req, res) => {
-//   try {
-//     const { id } = req.params
-//     const categoryRepository = getCustomRepository(CategoryRepository)
-//     const category = await categoryRepository.findOne({ id })
-//     res.status(200).json(category)
-//   } catch (error) {
-//     console.log(error)
-//   }
-// })
-// routes.put('/:id', async (req, res) => {
-//   const { id } = req.params
-//   const categoryRepository = getCustomRepository(CategoryRepository)
-//   const result = await categoryRepository.update(id, req.body)
-//   res.status(200).json(result)
-// })
-
-// routes.delete('/:id', async (req, res) => {
-//   const { id } = req.params
-//   const categoryRepository = getCustomRepository(CategoryRepository)
-//   const category = await categoryRepository.findOne({ id })
-
-//   if (category != null) {
-//     const result = await categoryRepository.remove(category)
-//     return res.status(200).json(result)
-//   }
-//   return res.status(400).json({ error: 'category was not found' })
-// }
-// )
-// // export default routes
