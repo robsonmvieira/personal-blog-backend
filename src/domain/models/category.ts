@@ -14,7 +14,7 @@ export default class Category {
   @Column()
   title: string
 
-  @OneToMany(type => Post, post => post.category)
+  @OneToMany(type => Post, post => post.category, { lazy: true })
   @JoinTable()
   posts: Post[]
 
