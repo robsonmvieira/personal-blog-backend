@@ -1,5 +1,5 @@
 import Post from './post'
-import { Entity, PrimaryGeneratedColumn, ManyToMany, Column, JoinTable } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, ManyToMany, Column } from 'typeorm'
 
 @Entity('tags')
 export default class Tag {
@@ -7,7 +7,6 @@ export default class Tag {
   id: string
 
   @ManyToMany(type => Post, post => post.tags)
-  @JoinTable()
   posts: Post[]
 
   @Column()
