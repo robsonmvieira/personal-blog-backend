@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, ManyToMany } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, ManyToMany, JoinColumn } from 'typeorm'
 import Category from './category'
 import User from './user'
 import Tag from './tag'
@@ -27,10 +27,14 @@ export default class Post {
   @ManyToOne(type => Category, category => category.posts)
   category: Category
 
-  @ManyToMany(type => Tag, tag => tag.posts)
+  @ManyToMany(type => Tag, tag => tag.posts, { lazy: true })
   tags: Tag[]
 
+  @Column({ type: 'uuid' })
+  user_id: string
+
   @ManyToOne(type => User, user => user.posts)
+  @JoinColumn()
   user: User
 
   @OneToMany(type => Comment, comment => comment.post)
@@ -41,7 +45,4 @@ export default class Post {
 
   @UpdateDateColumn()
   updated_at: Date
-
-  @Column({ type: 'uuid' })
-  user_id: string
 }
