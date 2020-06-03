@@ -5,7 +5,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "dev",
-  "database": "blogdatabase",
+  "database": "blogDatabase",
   "entities": ["./src/domain/models/*.ts"],
   "migrations": [
     "./src/infra/database/migrations/*.ts"

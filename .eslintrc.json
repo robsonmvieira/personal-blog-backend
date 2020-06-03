@@ -2,5 +2,13 @@
   "extends": "standard-with-typescript",
   "parserOptions": {
       "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/no-empty-interface": [
+      "error",
+      {
+        "allowSingleExtends": false
+      }
+    ]
   }
 }
