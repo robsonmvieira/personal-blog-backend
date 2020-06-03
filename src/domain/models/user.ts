@@ -19,6 +19,5 @@ export default class User {
   isAdmin: string
 
   @OneToMany(type => Post, post => post.user)
-  @JoinTable()
   posts: Post[]
 }
